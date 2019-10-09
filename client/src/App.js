@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { withCookies } from 'react-cookie';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import './assets/css/general/container.css';
+import './assets/css/general/box.css';
+import NavBarPage from './pages/navbar/navbarPage';
+import NotFoundPage from './pages/navbar/navbarPage';
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <Switch>
+          <Route
+            exact path="/auth/login" 
+            render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
+          />
+          <Route
+            exact path="/auth/register" 
+            render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
+          />
+          <Route
+            exact path="/exchange" 
+            render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
+          />
+          <Route path="*" component={ NotFoundPage } />
+        </Switch>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withCookies(App);

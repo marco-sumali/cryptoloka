@@ -1,0 +1,96 @@
+/* ---------- Container Component ---------- */
+.Container-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Container-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.Container-one-line {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Container-wrap-center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container-wrap-center-cross {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.Container-wrap-center-axis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.Container-nowrap-center {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.Container-nowrap-spacebetween {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Container-nowrap-center-cross {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.Container-nowrap-center-axis {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+
+.Container-nowrap-start {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start
+}
+
+.Container-nowrap-end {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Container-wrap-end {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.Container-nowrap-center-end {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.Container-nowrap-center-start {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
