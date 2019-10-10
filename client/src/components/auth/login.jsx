@@ -19,7 +19,8 @@ class Login extends Component {
       authSignIn,
       authError,
       loadingStatus,
-      cookies
+      cookies,
+      validationErrorMessages,
     } = this.props
     console.log('from Login', this.props)
     return (
@@ -67,6 +68,21 @@ class Login extends Component {
                     </Row>
                     <Row>
                       <Col xs={12}>
+                        {
+                          validationErrorMessages.map((errorMessage, index) => {
+                            return (
+                              <ul style={{ marginBottom: '0px' }} key={index}>
+                                <li>
+                                  <div className="Auth-error-text Text-left No-margin">{ errorMessage }</div>
+                                </li>
+                              </ul>
+                            ) 
+                          })
+                        }
+                      </Col>
+                    </Row>
+                    <Row style={{ marginTop: '1em' }}>
+                      <Col xs={12}>
                         <Button 
                           variant="primary"
                           disabled={ loadingStatus } 
@@ -109,6 +125,7 @@ const mapStateToProps = (state) => {
     authError: state.auth.errorMessage,
     loadingStatus: state.auth.loadingStatus,
     cookies: state.general.cookies,
+    validationErrorMessages: state.auth.validationErrorMessages,
   }
 }
 

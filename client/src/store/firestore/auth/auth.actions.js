@@ -1,10 +1,13 @@
 // PURPOSE: Actions documented in this store section is specialised for Firebase Authentication
 
 import { getUser } from '../user/user.actions';
-import { setNewCookies } from '../../../helpers/auth';
+import { setNewCookies, validateEmail, validateExactPassword, validateExactVariationPassword } from '../../../helpers/auth';
 
 // Information Declaration
 export const loginError = 'The email or password you entered is incorrect.'
+export const emailFormatError = 'Email format is incorrect.'
+export const minPasswordError = 'Min. password length is 8 characters.'
+export const containPasswordError = `Password can't contain the word 'password' or any number variations replacing each character.`
 export const tooManyRequestError = 'Too many unsuccessful authorisation attempts. Try again later.'
 export const loginDisableError = `Your account has been disabled. Please contact our support team.`
 
@@ -58,32 +61,41 @@ export const authSignIn = (e, email, password, cookies, windows) => {
     dispatch(setLoadingStatus(true))
 
     // AUTH VALIDATION
-    // IF SUCCESS
-    let firebase = getFirebase()
-    firebase.auth().signInWithEmailAndPassword(email, password)
-    .then(async (response) => {
-      let uid = response.user.uid
-      let user = await dispatch(getUser(uid))      
-      if (user.id) {
-        dispatch(setAuthError(""))
-        setNewCookies(cookies, user)
-        window.location.assign('/exchange/BTC')
-      } else {
-        // Not properly authorised
-      }
-    })
-    .catch(err => {
-      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-email') {
-        dispatch(setAuthError(loginError))
-        dispatch(setLoadingStatus(false))
-      } else if (err.code === 'auth/user-disabled') {
-        dispatch(setAuthError(loginDisableError))
-        dispatch(setLoadingStatus(false))
-      } else if (err.code === 'auth/too-many-requests') {
-        dispatch(setAuthError(tooManyRequestError))
-        dispatch(setLoadingStatus(false))
-      }
-    })
+    let validationStatus = dispatch(authValidation(email, password))
+
+    if (validationStatus) {
+      // IF SUCCESS
+      let firebase = getFirebase()
+      firebase.auth().signInWithEmailAndPassword(email, password)
+      .then(async (response) => {
+        let uid = response.user.uid
+        let user = await dispatch(getUser(uid))      
+        if (user.id) {
+          dispatch(setAuthError(""))
+          setNewCookies(cookies, user)
+          window.location.assign('/exchange/BTC')
+        } else {
+          // Not properly authorised
+        }
+      })
+      .catch(err => {
+        if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-email') {
+          dispatch(setAuthError(loginError))
+          dispatch(setLoadingStatus(false))
+        } else if (err.code === 'auth/user-disabled') {
+          dispatch(setAuthError(loginDisableError))
+          dispatch(setLoadingStatus(false))
+        } else if (err.code === 'auth/too-many-requests') {
+          dispatch(setAuthError(tooManyRequestError))
+          dispatch(setLoadingStatus(false))
+        }
+      })
+    } else {
+      // IF FAILURE
+      // Send error message which has been send during validation.
+      // Remove loading status
+      dispatch(setLoadingStatus(false))
+    }
   }
 }
 
@@ -113,12 +125,46 @@ export const authValidation = (email, password) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     let emailValidationStatus = false
     let passwordValidationStatus = false
+    let errors = []
 
+    // ERROR
+    if (!validateEmail(email)) {
+      errors.push(emailFormatError)
+    }
+
+    if (password.length < 8) {
+      errors.push(minPasswordError)
+    }
     
+    if (!validateExactPassword(password) || !validateExactVariationPassword(password)) {
+      errors.push(containPasswordError)
+    }
+    console.log('--', validateExactPassword(password), validateExactVariationPassword(password))
 
+    dispatch(setAuthValidationError(errors))
+    
+    // OK
+    if (validateEmail(email)) {
+      emailValidationStatus = true
+    }
 
+    if (password.length >= 8 && validateExactPassword(password) && validateExactVariationPassword(password)) {
+      passwordValidationStatus = true
+    }
 
+    if (emailValidationStatus && passwordValidationStatus) {
+      // Remove error messages if validation is successful
+      dispatch(setAuthValidationError([]))
+    }
 
+    return emailValidationStatus && passwordValidationStatus
   }
 }
 
+// Reducer: To set Login Validation Error Message
+export const setAuthValidationError = (data) => {
+  return {
+    type: 'SET_AUTH_VALIDATION_ERROR',
+    payload: data
+  }
+}

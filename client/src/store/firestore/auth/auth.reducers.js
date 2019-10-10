@@ -1,8 +1,11 @@
 let initialState = {
+  // LOGIN
   email: '',
   password: '',
   errorMessage:  '',
+  validationErrorMessages:  [],
   loadingStatus: false,
+  // REGISTER
 }
 
 const authDataList = (state = { ...initialState }, action) => {
@@ -26,6 +29,11 @@ const authDataList = (state = { ...initialState }, action) => {
       return ({
         ...state,
         errorMessage: action.payload
+      })
+    case 'SET_AUTH_VALIDATION_ERROR':
+      return ({
+        ...state,
+        validationErrorMessages: action.payload
       })
     default:
       return state;

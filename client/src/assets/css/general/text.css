@@ -1,3 +1,7 @@
+.Text-left {
+  text-align: left !important;
+}
+
 .Text-center {
   text-align: center;
 }
