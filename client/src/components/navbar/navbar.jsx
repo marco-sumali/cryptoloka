@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import '../../assets/css/bootstrap/component/boot.navbar.css';
+import '../../assets/css/bootstrap/component/boot.button.css';
 
 export default class navbar extends Component {
   render() {

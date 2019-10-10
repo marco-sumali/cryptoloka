@@ -4,8 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './auth.css';
 import { handleChangesAuth, authSignIn } from '../../store/firestore/auth/auth.actions';
+import './auth.css';
+import '../../assets/css/bootstrap/component/boot.button.css';
+import '../../assets/css/bootstrap/component/boot.form.css';
 import LoadingSvg from '../svg/loading';
 
 class Login extends Component {

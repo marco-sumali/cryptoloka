@@ -5,6 +5,7 @@ import { withCookies } from 'react-cookie';
 import './App.css';
 import './assets/css/general/container.css';
 import './assets/css/general/box.css';
+import './assets/css/general/text.css';
 import NavBarPage from './pages/navbar/navbarPage';
 import NotFoundPage from './pages/navbar/navbarPage';
 

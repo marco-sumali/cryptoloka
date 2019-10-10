@@ -13,7 +13,7 @@ class NavbarPage extends Component {
     let { match, cookies, setCookiesFunction } = this.props
     let path = match.path
     setCookiesFunction(cookies)
-    console.log('from NavbarPage', this.props)
+    // console.log('from NavbarPage', this.props)
     return (
       <div>
         <Navbar />

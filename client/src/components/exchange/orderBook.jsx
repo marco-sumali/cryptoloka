@@ -15,7 +15,7 @@ class OrderBook extends Component {
 
   render() {
     let { buys, sells } = this.props
-    console.log('from OrderBook', this.props)
+    // console.log('from OrderBook', this.props)
     return (
       <div className="Order-box">
         <Row>

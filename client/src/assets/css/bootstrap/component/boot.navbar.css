@@ -6,49 +6,6 @@
   color: var(--main-white) !important;
 }
 
-.btn-outline-success {
-  color: var(--main-white) !important;
-  border-color: var(--main-white) !important;
-  margin: 0px 4px;
-}
-
-.btn-outline-success:hover {
-  /* color: var(--main-white) !important;
-  background-color: var(--main-green) !important; */
-  border-color: var(--main-green) !important;
-  opacity: 0.8;
-}
-
-textarea:focus,
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="date"]:focus,
-input[type="month"]:focus,
-input[type="time"]:focus,
-input[type="week"]:focus,
-input[type="number"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="color"]:focus,
-.uneditable-input:focus {   
-  border-color: var(--main-light-green);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px var(--main-light-green);
-  outline: 0 none;
-}
-
-.btn-primary {
-  background-color: var(--main-green) !important;
-  border-color: var(--main-green) !important;
-}
-
-.btn-primary:hover {
-  opacity: 0.8;
-}
-
 span > a {
   color: var(--main-green) !important;
   text-decoration-color: var(--main-green) !important;

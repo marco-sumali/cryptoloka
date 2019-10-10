@@ -1,5 +1,7 @@
 // PURPOSE: Actions documented in this store section is specialised to manipulate data from/to USER's table
 
+import { getAndVerifyCookies } from '../../../helpers/auth';
+
 // To get user data from database
 export const getUser = (uid) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
@@ -20,5 +22,22 @@ export const getUser = (uid) => {
     })
 
     return user
+  }
+}
+
+export const getUserProfile = (cookies) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+    
+    let CUID = await getAndVerifyCookies(cookies)
+    // console.log('hello', CUID)
+    let userProfile = await dispatch(getUser(CUID.id))
+    await dispatch(setUserProfile(userProfile))
+  }
+}
+
+const setUserProfile = (data) => {
+  return {
+    type: 'SET_USER_PROFILE',
+    payload: data
   }
 }

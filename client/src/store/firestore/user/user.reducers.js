@@ -1,12 +1,13 @@
 let initialState = {
+  profile: ''
 }
 
 const userDataList = (state = { ...initialState }, action) => {
   switch (action.type) {
-    case '':
+    case 'SET_USER_PROFILE':
       return ({
         ...state,
-        shopsExists: action.payload
+        profile: action.payload
       })
     default:
       return state;

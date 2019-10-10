@@ -6,6 +6,15 @@ let initialState = {
   buyAmount: 0,
   buyFee: 0,
   buyNetAmount: 0,
+  buyModalShow: false,
+  buyLoadingStatus: false,
+  sellAmount: 0,
+  sellPrice: 0,
+  sellTotal: 0,
+  sellFee: 0,
+  sellNetAmount: 0,
+  sellModalShow: false,
+  sellLoadingStatus: false,
 }
 
 const userDataList = (state = { ...initialState }, action) => {
@@ -44,6 +53,51 @@ const userDataList = (state = { ...initialState }, action) => {
       return ({
         ...state,
         buyNetAmount: action.payload
+      })
+    case 'SET_BUY_MODAL_SHOW':
+      return ({
+        ...state,
+        buyModalShow: action.payload
+      })
+    case 'SET_BUY_LOADING_STATUS':
+      return ({
+        ...state,
+        buyLoadingStatus: action.payload
+      })
+    case 'SET_SELL_TOTAL':
+      return ({
+        ...state,
+        sellTotal: action.payload
+      })
+    case 'SET_SELL_PRICE':
+      return ({
+        ...state,
+        sellPrice: action.payload
+      })
+    case 'SET_SELL_AMOUNT':
+      return ({
+        ...state,
+        sellAmount: action.payload
+      })
+    case 'SET_SELL_FEE':
+      return ({
+        ...state,
+        sellFee: action.payload
+      })
+    case 'SET_SELL_NET_AMOUNT':
+      return ({
+        ...state,
+        sellNetAmount: action.payload
+      })
+    case 'SET_SELL_MODAL_SHOW':
+      return ({
+        ...state,
+        sellModalShow: action.payload
+      })
+    case 'SET_SELL_LOADING_STATUS':
+      return ({
+        ...state,
+        sellLoadingStatus: action.payload
       })
     default:
       return state;
