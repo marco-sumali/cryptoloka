@@ -5,7 +5,6 @@ import Login from '../../components/auth/login';
 export default class AuthPage extends Component {
   render() {
     let { path } = this.props.match
-
     return (
       <div>
         {

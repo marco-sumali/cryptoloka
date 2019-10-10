@@ -22,7 +22,7 @@ class App extends Component {
             render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
           />
           <Route
-            exact path="/exchange" 
+            exact path="/exchange/:coinId" 
             render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
           />
           <Route path="*" component={ NotFoundPage } />

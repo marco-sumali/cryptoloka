@@ -3,7 +3,7 @@ let initialState = {
 
 const userDataList = (state = { ...initialState }, action) => {
   switch (action.type) {
-    case 'GET_SHOPS_DATA_FAILED':
+    case '':
       return ({
         ...state,
         shopsExists: action.payload

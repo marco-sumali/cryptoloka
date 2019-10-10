@@ -40,7 +40,7 @@ const setPasswordAuthInput = (data) => {
 }
 
 // To authenticate user request to signed in
-// Authentication Process
+// Authentication Process:
 // 1. Form Validation
 //    a. Email should contain a valid address
 //    b. Password must be 8 characters long
@@ -51,6 +51,7 @@ const setPasswordAuthInput = (data) => {
 // 5. If user is exist in Firestore, give user authorisation status (if necessary)
 // The idea to validate to database it to ensure that user is not just authenticated but also authorised
 // Otherwise, send error message
+// 6. If validated, remove error message, create new cookies and redirect user to exchange page
 export const authSignIn = (e, email, password, cookies, windows) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     e.preventDefault()
@@ -66,7 +67,7 @@ export const authSignIn = (e, email, password, cookies, windows) => {
       if (user.id) {
         dispatch(setAuthError(""))
         setNewCookies(cookies, user)
-        window.location.assign('/exchange')
+        window.location.assign('/exchange/BTC')
       } else {
         // Not properly authorised
       }

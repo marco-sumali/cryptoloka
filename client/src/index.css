@@ -15,14 +15,19 @@ code {
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 :root {
+  --main-green-gray: #D8EBD1;
   --main-light-green: #9BDF83;
   --main-green: #68BC63;
   --main-dark-green:#337173;
   --main-white: #ffffff;
   --main-black: #000000;
+  --main-gray-white: #FAFAFA;
   --main-light-gray: #ced4da;
   --main-gray: gainsboro;
-  --main-darkgray: #333333;
+  --main-dark-gray: rgb(153, 153, 153);
+  --main-darker-gray: #333333;
+  --main-bid: #1ACB9E;
+  --main-ask: #FF5858;
   --main-red: #DC143C;
 }
 

@@ -1,0 +1,53 @@
+.Exchange-page-box {
+  padding: 1em 0em;
+  min-height: 92vh;
+  background-color: var(--main-gray-white);
+}
+
+.Order-box {
+  border-radius: 5px;
+  background-color: var(--main-white);
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  margin-bottom: 1em;
+}
+
+.Order-head-box {
+  padding: 1em;
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  /* border-bottom: 1px solid var(--main-gray); */
+}
+
+.Order-head-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Order-body-box {
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+}
+
+.Order-form-box {
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  padding: 1em;
+}
+
+.Sell-price-text {
+  color: var(--main-ask);
+  font-weight: bold;
+}
+
+.Buy-price-text {
+  color: var(--main-bid);
+  font-weight: bold;
+}
+
+.Order-input-label {
+  color: var(--main-dark-gray) !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Order-input-text {
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}

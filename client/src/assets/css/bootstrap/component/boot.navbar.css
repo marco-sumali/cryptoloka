@@ -1,21 +1,22 @@
 .Navbar-bg { 
-  background-color: var(--main-light-green) !important;
+  background-color: var(--main-green) !important;
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: var(--main-dark-green) !important;
+  color: var(--main-white) !important;
 }
 
 .btn-outline-success {
-  color: var(--main-dark-green) !important;
-  border-color: var(--main-dark-green) !important;
+  color: var(--main-white) !important;
+  border-color: var(--main-white) !important;
   margin: 0px 4px;
 }
 
 .btn-outline-success:hover {
-  color: var(--main-white) !important;
-  background-color: var(--main-green) !important;
+  /* color: var(--main-white) !important;
+  background-color: var(--main-green) !important; */
   border-color: var(--main-green) !important;
+  opacity: 0.8;
 }
 
 textarea:focus,

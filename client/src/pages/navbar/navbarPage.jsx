@@ -24,7 +24,7 @@ class NavbarPage extends Component {
           path === '/auth/register' ?
           <AuthPage match={ this.props.match } />
           :
-          path === '/exchange' ?
+          path === '/exchange/:coinId' ?
           <ExchangePage match={ this.props.match } />
           :
           <NotFoundPage />
