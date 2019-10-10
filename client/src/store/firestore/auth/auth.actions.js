@@ -103,3 +103,22 @@ export const setLoadingStatus = (data) => {
   }
 }
 
+// To validate user input during authentication process
+// Requirement:
+// 1. Form Validation
+//    a. Email should contain a valid address
+//    b. Password must be 8 characters long
+//    a. Password should not contain variation of word from 'password'
+export const authValidation = (email, password) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    let emailValidationStatus = false
+    let passwordValidationStatus = false
+
+    
+
+
+
+
+  }
+}
+

@@ -1,6 +1,6 @@
 .Exchange-page-box {
   padding: 1em 0em;
-  min-height: 92vh;
+  min-height: 100vh;
   background-color: var(--main-gray-white);
 }
 
@@ -54,4 +54,55 @@
 
 .Modal-text {
   font-size: 14px;
+}
+
+.Order-sell-box {
+  padding-right: 0px !important;
+}
+
+.Order-buy-box {
+  padding-left: 0px !important;
+}
+
+.Web-table-buy-box {
+  display: block;
+}
+
+.Mobile-table-buy-box {
+  display: none;
+}
+
+.Web-order-form-box {
+  display: block;
+}
+
+.Mobile-order-form-box {
+  display: none;
+}
+
+/* Mobile CSS */
+@media screen and (max-width: 600px) {
+  .Order-sell-box {
+    padding-right: 1em !important;
+  }
+  
+  .Order-buy-box {
+    padding-left: 1em !important;
+  }
+
+  .Mobile-table-buy-box {
+    display: block;
+  }  
+
+  .Web-table-buy-box {
+    display: none;
+  }  
+
+  .Mobile-order-form-box {
+    display: block;
+  }  
+
+  .Web-order-form-box {
+    display: none;
+  }
 }

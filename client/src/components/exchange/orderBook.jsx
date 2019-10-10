@@ -19,17 +19,17 @@ class OrderBook extends Component {
     return (
       <div className="Order-box">
         <Row>
-          <Col lg={ 12 }>
+          <Col xs={ 12 }>
             <div className="Order-head-box">
               <div className="Order-head-text">Order Book</div>
             </div>
           </Col>
         </Row>
         <Row>
-          <Col lg={ 12 }>
-            <div className="Order-body-box">
+          <Col xs={ 12 }>
+            <div className="Order-body-box Text-right">
               <Row>
-                <Col lg={ 6 } style={{ paddingRight: '0px' }}>
+                <Col className="Order-sell-box" xs={12} md={ 6 }>
                   <Table striped hover borderless responsive>
                     <thead>
                       <tr>
@@ -51,31 +51,57 @@ class OrderBook extends Component {
                         })
                       }
                     </tbody>
-                  </Table>
+                  </Table>  
                 </Col>
-                <Col lg={ 6 } style={{ paddingLeft: '0px' }}>
-                <Table striped hover borderless responsive>
-                    <thead>
-                      <tr>
-                        <th>Price (IDR)</th>
-                        <th>Amount</th>
-                        <th>Total (IDR)</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        buys.map((buyOrder, index) => {
-                          return(
-                            <tr key={ index }>
-                              <td className="Buy-price-text">{ formatMoney( buyOrder.price ) }</td>
-                              <td>{ buyOrder.amount }</td>
-                              <td>{ formatMoney(buyOrder.total) }</td>
-                            </tr>
-                          )
-                        })
-                      }
-                    </tbody>
-                  </Table>
+                <Col className="Order-buy-box" xs={12}  md={ 6 }>
+                  <div className="Web-table-buy-box">
+                    <Table striped hover borderless responsive>
+                      <thead>
+                        <tr>
+                          <th>Price (IDR)</th>
+                          <th>Amount</th>
+                          <th>Total (IDR)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          buys.map((buyOrder, index) => {
+                            return(
+                              <tr key={ index }>
+                                <td className="Buy-price-text">{ formatMoney( buyOrder.price ) }</td>
+                                <td>{ buyOrder.amount }</td>
+                                <td>{ formatMoney(buyOrder.total) }</td>
+                              </tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </Table>
+                  </div>
+                  <div className="Mobile-table-buy-box">
+                    <Table striped hover borderless responsive>
+                      <thead>
+                        <tr>
+                          <th>Price (IDR)</th>
+                          <th>Amount</th>
+                          <th>Total (IDR)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {
+                          buys.map((buyOrder, index) => {
+                            return(
+                              <tr key={ index }>
+                                <td>{ formatMoney(buyOrder.total) }</td>
+                                <td>{ buyOrder.amount }</td>
+                                <td className="Buy-price-text">{ formatMoney( buyOrder.price ) }</td>
+                              </tr>
+                            )
+                          })
+                        }
+                      </tbody>
+                    </Table>
+                  </div>
                 </Col>
               </Row>
             </div>
