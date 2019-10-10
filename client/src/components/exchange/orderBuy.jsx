@@ -11,6 +11,7 @@ import {
 } from '../../store/firestore/order/order.actions';
 import { getUserProfile } from '../../store/firestore/user/user.actions';
 import { formatMoney } from '../../helpers/currency';
+import LoadingSvg from '../svg/loading';
 
 class OrderBuyForm extends Component {
   render() {
@@ -26,12 +27,13 @@ class OrderBuyForm extends Component {
       match,
       buyModalShow,
       handleBuyModalShow,
-      createBuyOrder
+      createBuyOrder,
+      loadingStatus,
     } = this.props
     let coinId = match.params.coinId
     // console.log('from BuyOrderForm', this.props)
     return (
-      <Form onSubmit={ (e) => createBuyOrderConfirmation(e, buyNetAmount) }>
+      <Form onSubmit={ loadingStatus === false ? (e) => createBuyOrderConfirmation(e, buyNetAmount) : null }>
         <Row>
           <Col xs={ 12 }>
             <Form.Group controlId="buyTotal">
@@ -165,8 +167,21 @@ class OrderBuyForm extends Component {
           </Modal.Footer>
         </Modal>
         
-        <Button variant="secondary" type="submit" style={{ width: '100%' }}>
-          BUY
+        <Button 
+          variant="secondary" 
+          disabled={ loadingStatus }
+          type="submit" 
+          style={{ width: '100%' }}
+        >
+          {
+            !loadingStatus ? 
+            <div>BUY</div> 
+            : 
+            <div className="Container-nowrap-center">
+              <LoadingSvg height="24px" width="24px" color="#ffffff" />
+              <div>BUY</div>
+            </div>  
+          }
         </Button>
       </Form>
     )
@@ -175,14 +190,15 @@ class OrderBuyForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    profile: state.user.profile,
+    cookies: state.general.cookies,
     buyTotal: state.order.buyTotal,
     buyPrice: state.order.buyPrice,
     buyAmount: state.order.buyAmount,
     buyFee: state.order.buyFee,
     buyNetAmount: state.order.buyNetAmount,
-    profile: state.user.profile,
-    cookies: state.general.cookies,
     buyModalShow: state.order.buyModalShow,
+    loadingStatus: state.order.buyLoadingStatus,
   }
 }
 

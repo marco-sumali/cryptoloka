@@ -128,8 +128,8 @@ export const createBuyOrderConfirmation = (e, buyNetAmount) => {
     e.preventDefault();
 
     if (buyNetAmount > 0) {
+      dispatch(setBuyLoadingStatus(true))
       dispatch(setBuyModalShow(true))
-
     } else {
       // send error alert
       Swal.fire({
@@ -151,6 +151,7 @@ export const handleBuyModalShow = (buyModalShow) => {
     }
     
     dispatch(setBuyModalShow(buyModalShow))
+    dispatch(setBuyLoadingStatus(false))
   }
 }
 
@@ -158,6 +159,14 @@ export const handleBuyModalShow = (buyModalShow) => {
 const setBuyModalShow = (data) => {
   return {
     type: 'SET_BUY_MODAL_SHOW',
+    payload: data
+  }
+}
+
+// Reducer: to set loading status during order buy confirmation
+const setBuyLoadingStatus = (data) => {
+  return {
+    type: 'SET_BUY_LOADING_STATUS',
     payload: data
   }
 }
@@ -191,6 +200,7 @@ export const createBuyOrder = (e, profile, coinId, buyTotal, buyPrice, buyAmount
       dispatch(setBuyAmountInput(0))
       dispatch(setBuyFeeInput(0))
       dispatch(setBuyNetAmountInput(0))
+      dispatch(setBuyLoadingStatus(false))
       Swal.fire({
         title: 'Buy Order Successful.',
         text: 'Your order has been received.',
@@ -200,6 +210,173 @@ export const createBuyOrder = (e, profile, coinId, buyTotal, buyPrice, buyAmount
     })
     .catch(err => {
       console.log('ERROR: Create Buy Order')
+    })
+  }
+}
+
+// -------------------------------------------------SELL--------------------------------------------------------
+
+// To handle store changes in form input during selling form
+export const handleChangesSellingOrder = (e, document) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    let target = e.target
+    let inputId = target.id
+    let value = target.value
+
+    let sellAmount = Number(document.getElementById('sellAmount').value)
+    let sellPrice = Number(document.getElementById('sellPrice').value)
+    let total = 0
+    let fee = 0
+    let netAmount = 0
+
+    if (inputId === 'sellAmount') {
+      sellAmount = Number(value)
+      dispatch(setSellAmountInput(value))
+    } else if (inputId === 'sellPrice') {
+      sellPrice =  Number(value)
+      dispatch(setSellPriceInput(value))
+    }
+
+    if (sellAmount > 0 && sellPrice > 0) {
+      total = sellAmount * sellPrice
+      fee = 0.15 / 100 * total
+      netAmount = total - fee
+    } 
+
+    dispatch(setTotalSellInput(total))
+    dispatch(setSellFeeInput(fee))
+    dispatch(setSellNetAmountInput(netAmount))
+  }
+}
+
+// Reducer: to set total sell order input
+const setTotalSellInput = (data) => {
+  return {
+    type: 'SET_SELL_TOTAL',
+    payload: data
+  }
+}
+
+// Reducer: to set price sell order input
+const setSellPriceInput = (data) => {
+  return {
+    type: 'SET_SELL_PRICE',
+    payload: data
+  }
+}
+
+// Reducer: to set amount sell order input
+const setSellAmountInput = (data) => {
+  return {
+    type: 'SET_SELL_AMOUNT',
+    payload: data
+  }
+}
+
+// Reducer: to set fee sell order input
+const setSellFeeInput = (data) => {
+  return {
+    type: 'SET_SELL_FEE',
+    payload: data
+  }
+}
+
+// Reducer: to set net amount sell order input
+const setSellNetAmountInput = (data) => {
+  return {
+    type: 'SET_SELL_NET_AMOUNT',
+    payload: data
+  }
+}
+
+// To create a new sell order confirmation based on user input
+export const createSellOrderConfirmation = (e, sellNetAmount) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    e.preventDefault();
+
+    if (sellNetAmount > 0) {
+      dispatch(setSellLoadingStatus(true))
+      dispatch(setSellModalShow(true))
+    } else {
+      // send error alert
+      Swal.fire({
+        title: 'Wrong Order.',
+        text: 'Net Amount must be bigger than 0.',
+        type: 'error',
+        confirmButtonText: 'Cancel'
+      })
+    }
+  }
+}
+
+export const handleSellModalShow = (sellModalShow) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    if (sellModalShow) {
+      sellModalShow = false
+    } else {
+      sellModalShow = true
+    }
+    
+    dispatch(setSellModalShow(sellModalShow))
+    dispatch(setSellLoadingStatus(false))
+  }
+}
+
+// Reducer: to set sell modal show status to true or false (hidden)
+const setSellModalShow = (data) => {
+  return {
+    type: 'SET_SELL_MODAL_SHOW',
+    payload: data
+  }
+}
+
+// Reducer: to set loading status during order sell  confirmation
+const setSellLoadingStatus = (data) => {
+  return {
+    type: 'SET_SELL_LOADING_STATUS',
+    payload: data
+  }
+}
+
+// To create a new sell order after confirmation based on user input
+export const createSellOrder = (e, profile, coinId, sellTotal, sellPrice, sellAmount, sellFee, sellNetAmount) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    e.preventDefault();
+    let firestore = getFirestore()
+    let ordersRef = firestore.collection('orderBooks')
+
+    let newOrder = {
+      userId: profile.id,
+      coinId,
+      type: 'sell',
+      total: Number(sellTotal),
+      price: Number(sellPrice),
+      amount: parseFloat(sellAmount),
+      fee: parseFloat(sellFee),
+      netAmount: parseFloat(sellNetAmount),
+      createdDate: new Date(Date.now()),
+      updatedDate: new Date(Date.now()),
+    }
+
+    ordersRef
+    .add(newOrder)
+    .then(ref => {
+      // send success status
+      dispatch(setSellAmountInput(0))
+      dispatch(setSellPriceInput(0))
+      dispatch(setTotalSellInput(0))
+      dispatch(setSellFeeInput(0))
+      dispatch(setSellNetAmountInput(0))
+      dispatch(setSellLoadingStatus(false))
+      Swal.fire({
+        title: 'Sell Order Successful.',
+        text: 'Your order has been received.',
+        type: 'success',
+        confirmButtonText: 'OK'
+      })
+    })
+    .catch(err => {
+      console.log('ERROR: Create Sell Order')
     })
 
   }
