@@ -1,12 +1,17 @@
 let initialState = {
+  hasAuthenticated: true,
   // LOGIN
   email: '',
   password: '',
   errorMessage:  '',
   validationErrorMessages:  [],
   loadingStatus: false,
-  hasAuthenticated: true,
   // REGISTER
+  regEmail: '',
+  regPassword: '',
+  regErrorMessage:  '',
+  regValidationErrorMessages:  [],
+  regLoadingStatus: false,
 }
 
 const authDataList = (state = { ...initialState }, action) => {
@@ -41,6 +46,32 @@ const authDataList = (state = { ...initialState }, action) => {
         ...state,
         hasAuthenticated: action.payload
       })
+    case 'SET_REG_EMAIL':
+      return ({
+        ...state,
+        regEmail: action.payload
+      })
+    case 'SET_REG_PASSWORD':
+      return ({
+        ...state,
+        regPassword: action.payload
+      })
+    case 'SET_REG_ERROR':
+      return ({
+        ...state,
+        regErrorMessage: action.payload
+      })
+    case 'SET_REG_LOADING_STATUS':
+      return ({
+        ...state,
+        regLoadingStatus: action.payload
+      })
+    case 'SET_REG_VALIDATION_ERROR':
+      return ({
+        ...state,
+        regValidationErrorMessages: action.payload
+      })
+
     default:
       return state;
   }

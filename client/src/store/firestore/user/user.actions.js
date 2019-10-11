@@ -51,3 +51,31 @@ const setUserProfile = (data) => {
     payload: data
   }
 }
+
+// To create new user to database
+export const createNewUser = (uid, email) => {
+  return async (dispatch, getState, { getFirebase, getFirestore }) => {
+    let firestore =  getFirestore()
+    let usersRef = firestore.collection('users').doc(uid)
+    let createdUser = false
+
+    let newUser = {
+      email,
+      createdDate: new Date(Date.now()),
+      updatedDate: new Date(Date.now())
+    }
+
+    await usersRef.set(newUser)
+    .then(() => {
+      createdUser = {
+        id: uid,
+        email,
+      }
+    })
+    .catch(err => {
+      console.log('ERROR: Create New User', err)
+    })
+
+    return createdUser
+  }
+}

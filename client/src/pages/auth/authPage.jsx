@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
 import { getUserProfile } from '../../store/firestore/user/user.actions';
 import Login from '../../components/auth/login';
+import Register from '../../components/auth/register';
 
 class AuthPage extends Component {
   componentDidMount() {
@@ -27,7 +28,7 @@ class AuthPage extends Component {
               <Login />
               :
               path === '/auth/register' ?
-              <div>register</div>
+              <Register />
               :
               <div></div>
             }

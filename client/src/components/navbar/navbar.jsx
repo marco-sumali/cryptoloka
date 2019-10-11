@@ -15,6 +15,7 @@ class navbar extends Component {
       hasAuthenticated,
       authSignOut,
       cookies,
+      profile,
     } = this.props
     return (
       <div>
@@ -43,9 +44,12 @@ class navbar extends Component {
                   </Link>
                 </div>
                 :
-                <Link to="" onClick={() => authSignOut(cookies)}>
-                  <Button variant="outline-success">Log Out</Button>
-                </Link>
+                <div className="Container-nowrap-center-cross">
+                  <div className="Profile">{ profile.email }</div>
+                  <Link to="" onClick={() => authSignOut(cookies)}>
+                    <Button variant="outline-success">Log Out</Button>
+                  </Link>
+                </div>
               }
             </Form>
           </Navbar.Collapse>
