@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Row, Col, Form, Button, Modal } from 'react-bootstrap';
-import LoadingSvg from '../svg/loading';
 import {
   handleChangesSellingOrder,
   createSellOrderConfirmation,
@@ -11,6 +10,7 @@ import {
   createSellOrder,
 } from '../../store/firestore/order/order.actions';
 import { formatMoney } from '../../helpers/currency';
+import LoadingSvg from '../svg/loading';
 
 class OrderSellForm extends Component {
   render() {

@@ -1,4 +1,5 @@
 // PURPOSE: Actions documented in this store section is specialised to manipulate data from/to ORDERS's table
+
 const Swal = require('sweetalert2')
 
 // To get orders data from database
@@ -55,12 +56,14 @@ export const handleChangesBuyingOrder = (e, document) => {
     let inputId = target.id
     let value = target.value
 
+    // To continously update total, price, amount, fee and net amount information based on user input
     let buyTotal = Number(document.getElementById('buyTotal').value)
     let buyPrice = Number(document.getElementById('buyPrice').value)
     let amount = 0
     let fee = 0
     let netAmount = 0
 
+    // Updating total and price information to store
     if (inputId === 'buyTotal') {
       buyTotal = Number(value)
       dispatch(setTotalBuyInput(value))
@@ -69,7 +72,8 @@ export const handleChangesBuyingOrder = (e, document) => {
       dispatch(setBuyPriceInput(value))
     }
 
-
+    // If net amount is greater than 0 then update the information to store
+    // Otherwise let it be 0 to show that user can't buy without fulfilling minimum amount
     if (buyTotal > 0 && buyPrice > 0) {
       amount = buyTotal / buyPrice
       fee = 0.15 / 100 * amount
@@ -123,12 +127,16 @@ const setBuyNetAmountInput = (data) => {
 }
 
 // To create a new buy order confirmation based on user input
+// Requirement:
+// Send error messages if net amount entered is less and equal to 0
 export const createBuyOrderConfirmation = (e, buyNetAmount) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     e.preventDefault();
 
     if (buyNetAmount > 0) {
+      // Update loading status to true
       dispatch(setBuyLoadingStatus(true))
+      // Update show modal status to true
       dispatch(setBuyModalShow(true))
     } else {
       // send error alert
@@ -142,6 +150,7 @@ export const createBuyOrderConfirmation = (e, buyNetAmount) => {
   }
 }
 
+// To handle buy modal show status (bootstrap requirement) to true (show) or false (hidden)
 export const handleBuyModalShow = (buyModalShow) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     if (buyModalShow) {
@@ -194,13 +203,15 @@ export const createBuyOrder = (e, profile, coinId, buyTotal, buyPrice, buyAmount
     ordersRef
     .add(newOrder)
     .then(ref => {
-      // send success status
+      // remove previous user input
       dispatch(setTotalBuyInput(0))
       dispatch(setBuyPriceInput(0))
       dispatch(setBuyAmountInput(0))
       dispatch(setBuyFeeInput(0))
       dispatch(setBuyNetAmountInput(0))
+      // change loading status to false
       dispatch(setBuyLoadingStatus(false))
+      // send success status
       Swal.fire({
         title: 'Buy Order Successful.',
         text: 'Your order has been received.',
@@ -223,12 +234,14 @@ export const handleChangesSellingOrder = (e, document) => {
     let inputId = target.id
     let value = target.value
 
+    // To continously update total, price, amount, fee and net amount information based on user input
     let sellAmount = Number(document.getElementById('sellAmount').value)
     let sellPrice = Number(document.getElementById('sellPrice').value)
     let total = 0
     let fee = 0
     let netAmount = 0
 
+    // Updating total and price information to store
     if (inputId === 'sellAmount') {
       sellAmount = Number(value)
       dispatch(setSellAmountInput(value))
@@ -237,6 +250,8 @@ export const handleChangesSellingOrder = (e, document) => {
       dispatch(setSellPriceInput(value))
     }
 
+    // If net amount is greater than 0 then update the information to store
+    // Otherwise let it be 0 to show that user can't buy without fulfilling minimum amount
     if (sellAmount > 0 && sellPrice > 0) {
       total = sellAmount * sellPrice
       fee = 0.15 / 100 * total
@@ -309,6 +324,7 @@ export const createSellOrderConfirmation = (e, sellNetAmount) => {
   }
 }
 
+// To handle sell modal show status (bootstrap requirement) to true (show) or false (hidden)
 export const handleSellModalShow = (sellModalShow) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     if (sellModalShow) {
@@ -361,13 +377,15 @@ export const createSellOrder = (e, profile, coinId, sellTotal, sellPrice, sellAm
     ordersRef
     .add(newOrder)
     .then(ref => {
-      // send success status
+      // remove previous form input
       dispatch(setSellAmountInput(0))
       dispatch(setSellPriceInput(0))
       dispatch(setTotalSellInput(0))
       dispatch(setSellFeeInput(0))
       dispatch(setSellNetAmountInput(0))
+      // change loading status to false
       dispatch(setSellLoadingStatus(false))
+      // send success status
       Swal.fire({
         title: 'Sell Order Successful.',
         text: 'Your order has been received.',

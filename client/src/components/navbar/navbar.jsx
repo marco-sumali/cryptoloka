@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { authSignOut } from '../../store/firestore/auth/auth.actions';
 import '../../assets/css/bootstrap/component/boot.navbar.css';
 import '../../assets/css/bootstrap/component/boot.button.css';
-import { authSignOut } from '../../store/firestore/auth/auth.actions';
+import './navbar.css';
 
 class navbar extends Component {
   render() {
@@ -18,7 +19,13 @@ class navbar extends Component {
     return (
       <div>
         <Navbar className="Navbar-bg" expand="lg" sticky="top">
-          <Navbar.Brand href="/">CRYPTOLOKA</Navbar.Brand>
+          <Navbar.Brand href="/">
+            <img
+              src={ process.env.PUBLIC_URL + '/assets/img/leaf-logo-transparent.png' }
+              className="d-inline-block align-top Logo-leaf"
+              alt="Logo"
+            />
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
@@ -36,7 +43,7 @@ class navbar extends Component {
                   </Link>
                 </div>
                 :
-                <Link onClick={() => authSignOut(cookies)}>
+                <Link to="" onClick={() => authSignOut(cookies)}>
                   <Button variant="outline-success">Log Out</Button>
                 </Link>
               }

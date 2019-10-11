@@ -3,6 +3,7 @@
 // -------------------------------------------------------------- COOKIES RELATED --------------------------------------------------------------
 const jwt = require('jsonwebtoken');
 
+// VARIABLE INFORMATION
 // Declaring default variables for creating a token to be stored/get for cookies
 // Private key is store on env file to be secured
 const PRIVATEKEY = process.env.REACT_APP_PRIVATEKEY
@@ -52,11 +53,13 @@ function removeCookies(cookies) {
 }
 
 // -------------------------------------------------------------- FORM RELATED --------------------------------------------------------------
+// To validate email format based on required standard
 function validateEmail(email) {
   var pattern = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@(([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return pattern.test(email);
 }
 
+// To validate password can't contain exact word 'password'
 function validateExactPassword(password) {
   let restrictedPassword = /password/i
   let test = restrictedPassword.test(password)
@@ -67,6 +70,7 @@ function validateExactPassword(password) {
   return result 
 }
 
+// To validate password can't contain variation of numbers to replace alphabets of 'password'
 function validateExactVariationPassword (password) {
   // Based on requirement the password can't contain any variations of numbers and alphabets from the word 'password' => 'p455w012d'
   // Thought Process:

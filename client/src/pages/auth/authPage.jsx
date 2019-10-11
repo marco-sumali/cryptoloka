@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Login from '../../components/auth/login';
-import { getUserProfile } from '../../store/firestore/user/user.actions';
 import { Redirect } from 'react-router-dom';
+import { getUserProfile } from '../../store/firestore/user/user.actions';
+import Login from '../../components/auth/login';
 
 class AuthPage extends Component {
   componentDidMount() {

@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
+import '../../assets/css/bootstrap/component/boot.tabs.css';
 import OrderBuyForm from './orderBuy';
 import OrderSellForm from './orderSell';
-import '../../assets/css/bootstrap/component/boot.tabs.css';
 
 class OrderForm extends Component {
   render() {

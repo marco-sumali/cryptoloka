@@ -9,7 +9,7 @@ import {
   removeCookies,
 } from '../../../helpers/auth';
 
-// Information Declaration
+// Variable Declaration
 export const loginError = 'The email or password you entered is incorrect.'
 export const emailFormatError = 'Email format is incorrect.'
 export const minPasswordError = 'Min. password length is 8 characters.'
@@ -77,8 +77,11 @@ export const authSignIn = (e, email, password, cookies, window) => {
         let uid = response.user.uid
         let user = await dispatch(getUser(uid))      
         if (user.id) {
+          // Remove error messages
           dispatch(setAuthError(""))
+          // Create new cookies
           setNewCookies(cookies, user)
+          // Redirect user to exchange page
           window.location.assign('/exchange/BTC')
         } else {
           // Not properly authorised
@@ -122,6 +125,8 @@ export const setLoadingStatus = (data) => {
 }
 
 // To validate user input during authentication process
+// It should return true or false statement
+// True means that password meets the requirement and false means that it does not meet the requirement
 // Requirement:
 // 1. Form Validation
 //    a. Email should contain a valid address
@@ -133,22 +138,24 @@ export const authValidation = (email, password) => {
     let passwordValidationStatus = false
     let errors = []
 
-    // ERROR
+    // ERROR VALIDATION - update error messages if error is identified
+    // Email Format Validation: false means error format
     if (!validateEmail(email)) {
       errors.push(emailFormatError)
     }
-
+    // Password Length Validation: minimum is 8 characters
     if (password.length < 8) {
       errors.push(minPasswordError)
     }
-    
+    // Password Variation Validation: it can't contain the word 'password' or any other number character replacements.
     if (!validateExactPassword(password) || !validateExactVariationPassword(password)) {
       errors.push(containPasswordError)
     }
 
+    // Send the error messages to store
     dispatch(setAuthValidationError(errors))
     
-    // OK
+    // APPROVED VALIDATION - update status for both email and password to true if it passed the validation
     if (validateEmail(email)) {
       emailValidationStatus = true
     }
@@ -157,8 +164,8 @@ export const authValidation = (email, password) => {
       passwordValidationStatus = true
     }
 
+    // Remove error messages if validation is successful
     if (emailValidationStatus && passwordValidationStatus) {
-      // Remove error messages if validation is successful
       dispatch(setAuthValidationError([]))
     }
 
@@ -186,7 +193,9 @@ export const setHasAuthStatus = (data) => {
 // To sign out user and remove authentication cookies from web
 export const authSignOut = (cookies) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
+    // Remove auth cookies
     removeCookies(cookies)
+    // Redirect to login page
     window.location.assign('/auth/login')
   }
 }

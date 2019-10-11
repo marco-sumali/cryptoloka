@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import '../../components/exchange/exchange.css';
+import { Container, Row, Col} from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
+import { getUserProfile } from '../../store/firestore/user/user.actions';
 import OrderBooks from '../../components/exchange/orderBook';
 import OrderForms from '../../components/exchange/orderForm';
-import { Container, Row, Col} from 'react-bootstrap';
-import { getUserProfile } from '../../store/firestore/user/user.actions';
-import { Redirect } from 'react-router-dom';
+import '../../components/exchange/exchange.css';
 
 class ExchangePage extends Component {
   componentDidMount() {

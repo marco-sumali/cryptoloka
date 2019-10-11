@@ -5,9 +5,9 @@ import { bindActionCreators } from 'redux';
 import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { handleChangesAuth, authSignIn } from '../../store/firestore/auth/auth.actions';
-import './auth.css';
 import '../../assets/css/bootstrap/component/boot.button.css';
 import '../../assets/css/bootstrap/component/boot.form.css';
+import './auth.css';
 import LoadingSvg from '../svg/loading';
 
 class Login extends Component {
@@ -22,7 +22,7 @@ class Login extends Component {
       cookies,
       validationErrorMessages,
     } = this.props
-    console.log('from Login', this.props)
+    // console.log('from Login', this.props)
     return (
       <div style={{ minHeight: '90vh' }} className="Container-nowrap-center">
           <Container>

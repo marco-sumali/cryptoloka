@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import '../../assets/css/bootstrap/component/boot.table.css';
 import { Row, Col, Table } from 'react-bootstrap';
 import { getOrders } from '../../store/firestore/order/order.actions';
 import { formatMoney } from '../../helpers/currency';
+import '../../assets/css/bootstrap/component/boot.table.css';
 
 class OrderBook extends Component {
   componentDidMount() {

@@ -4,6 +4,9 @@ import { getAndVerifyCookies } from '../../../helpers/auth';
 import { setHasAuthStatus } from '../auth/auth.actions';
 
 // To get user data from database
+// Ideally used for authentication purposes
+// If user is not found on the database then return false status
+// which to be followed for redirection to certain page.
 export const getUser = (uid) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     let firestore = getFirestore()
@@ -26,6 +29,8 @@ export const getUser = (uid) => {
   }
 }
 
+// To verify authentication on cookies and database and to return user profile
+// Basically used to save user data to store and update authentication status to true (which mean user has been authenticated)
 export const getUserProfile = (cookies) => {
   return async (dispatch, getState, { getFirebase, getFirestore }) => {
     let CUID = await getAndVerifyCookies(cookies)
@@ -39,6 +44,7 @@ export const getUserProfile = (cookies) => {
   }
 }
 
+// Reducer: to update user profile to store
 const setUserProfile = (data) => {
   return {
     type: 'SET_USER_PROFILE',
