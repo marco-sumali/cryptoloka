@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Navbar, Nav, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { authSignOut } from '../../store/firestore/auth/auth.actions';
+import LoadingSvg from '../svg/loading';
 import '../../assets/css/bootstrap/component/boot.navbar.css';
 import '../../assets/css/bootstrap/component/boot.button.css';
 import './navbar.css';
@@ -45,7 +46,14 @@ class navbar extends Component {
                 </div>
                 :
                 <div className="Container-nowrap-center-cross">
-                  <div className="Profile">{ profile.email }</div>
+                  <div className="Profile">
+                    {
+                      !profile.email ?
+                      <LoadingSvg width="36px" height="36px" color="#ffffff"/>
+                      :
+                      <div>{ profile.email }</div>
+                    }
+                  </div>
                   <Link to="" onClick={() => authSignOut(cookies)}>
                     <Button variant="outline-success">Log Out</Button>
                   </Link>

@@ -15,6 +15,7 @@ let initialState = {
   sellNetAmount: 0,
   sellModalShow: false,
   sellLoadingStatus: false,
+  isOrderLoaded: false,
 }
 
 const userDataList = (state = { ...initialState }, action) => {
@@ -98,6 +99,11 @@ const userDataList = (state = { ...initialState }, action) => {
       return ({
         ...state,
         sellLoadingStatus: action.payload
+      })
+    case 'SET_GET_ORDER_LOADING_STATUS':
+      return ({
+        ...state,
+        isOrderLoaded: action.payload
       })
     default:
       return state;

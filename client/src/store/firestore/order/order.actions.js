@@ -26,6 +26,7 @@ export const getOrders = (coinId) => {
             sellOrders.push(order)
           }
         })
+        dispatch(setIsOrderLoaded(true))
         dispatch(setBuyOrders(buyOrders))
         dispatch(setSellOrders(sellOrders))
       }
@@ -45,6 +46,14 @@ export const setBuyOrders = (data) => {
 export const setSellOrders = (data) => {
   return {
     type: 'SET_SELL_ORDERS',
+    payload: data
+  }
+}
+
+// Reducer: to set loading get order status
+export const setIsOrderLoaded = (data) => {
+  return {
+    type: 'SET_GET_ORDER_LOADING_STATUS',
     payload: data
   }
 }
