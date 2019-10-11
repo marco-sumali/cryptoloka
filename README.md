@@ -10,12 +10,12 @@ Cryptoloka is a crypto currency exchange concept for Indonesian market. This rep
    * State Management: Redux
    * UI Framework: Bootstrap
    * Alerts: Sweetalert2
-   _Reason: Most popular framework for application development._
+      _Reason: Most popular framework for application development._
 2. Back-end:
    * Database: Google Firestore Realtime Database
    * Authentication: Firebase Authentication, React Cookie, Jsonwebtoken
    * Hosting: Firebase Hosting
-   _Reason: Realtime database will be usefull when handling incoming changes in the order book for crypto exchange._
+      _Reason: Realtime database will be usefull when handling incoming changes in the order book for crypto exchange._
 
 ### Database Schema
 [DB Schema](https://docs.google.com/spreadsheets/d/1yWXr3Q8Teqf5HIpDAjhGQbX5n9MEnj1QNFmJAZdqygY/edit?usp=sharing)
