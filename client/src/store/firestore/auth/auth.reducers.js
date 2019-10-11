@@ -5,6 +5,7 @@ let initialState = {
   errorMessage:  '',
   validationErrorMessages:  [],
   loadingStatus: false,
+  hasAuthenticated: true,
   // REGISTER
 }
 
@@ -34,6 +35,11 @@ const authDataList = (state = { ...initialState }, action) => {
       return ({
         ...state,
         validationErrorMessages: action.payload
+      })
+    case 'SET_HAS_AUTH_STATUS':
+      return ({
+        ...state,
+        hasAuthenticated: action.payload
       })
     default:
       return state;

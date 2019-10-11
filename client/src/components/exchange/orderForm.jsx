@@ -3,17 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
-import { getUserProfile } from '../../store/firestore/user/user.actions';
 import OrderBuyForm from './orderBuy';
 import OrderSellForm from './orderSell';
 import '../../assets/css/bootstrap/component/boot.tabs.css';
 
 class OrderForm extends Component {
-  componentDidMount() {
-    let { getUserProfile, cookies } = this.props
-    getUserProfile(cookies)
-  }
-
   render() {
     return (
       <div className="Order-box">
@@ -77,7 +71,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  getUserProfile,
 }, dispatch)
 
 

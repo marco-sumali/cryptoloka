@@ -1,7 +1,13 @@
 // PURPOSE: Actions documented in this store section is specialised for Firebase Authentication
 
 import { getUser } from '../user/user.actions';
-import { setNewCookies, validateEmail, validateExactPassword, validateExactVariationPassword } from '../../../helpers/auth';
+import { 
+  setNewCookies, 
+  validateEmail, 
+  validateExactPassword, 
+  validateExactVariationPassword,
+  removeCookies,
+} from '../../../helpers/auth';
 
 // Information Declaration
 export const loginError = 'The email or password you entered is incorrect.'
@@ -55,7 +61,7 @@ const setPasswordAuthInput = (data) => {
 // The idea to validate to database it to ensure that user is not just authenticated but also authorised
 // Otherwise, send error message
 // 6. If validated, remove error message, create new cookies and redirect user to exchange page
-export const authSignIn = (e, email, password, cookies, windows) => {
+export const authSignIn = (e, email, password, cookies, window) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     e.preventDefault()
     dispatch(setLoadingStatus(true))
@@ -139,7 +145,6 @@ export const authValidation = (email, password) => {
     if (!validateExactPassword(password) || !validateExactVariationPassword(password)) {
       errors.push(containPasswordError)
     }
-    console.log('--', validateExactPassword(password), validateExactVariationPassword(password))
 
     dispatch(setAuthValidationError(errors))
     
@@ -166,5 +171,22 @@ export const setAuthValidationError = (data) => {
   return {
     type: 'SET_AUTH_VALIDATION_ERROR',
     payload: data
+  }
+}
+
+// Reducer: To set authentication status whether the user has been authenticated or not
+// The default value is true. When validation failed, set auth status to false and redirect the user to login.
+export const setHasAuthStatus = (data) => {
+  return {
+    type: 'SET_HAS_AUTH_STATUS',
+    payload: data
+  }
+}
+
+// To sign out user and remove authentication cookies from web
+export const authSignOut = (cookies) => {
+  return (dispatch, getState, { getFirebase, getFirestore }) => {
+    removeCookies(cookies)
+    window.location.assign('/auth/login')
   }
 }

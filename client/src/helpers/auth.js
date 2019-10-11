@@ -77,7 +77,7 @@ function validateExactVariationPassword (password) {
   // 3. Splice the word between validated indexes of 'p' and 'd'.
   // 4. Perform looping validation to check each characters of validated words to restricted words ('password' and 'p455w012d') 
   // starting from index 1 and index length -1 because no need to check first and last index which should be 'p' and 'd', respectively. 
-  // If it matches with restricted words then add 1 to  restrictedScore variables which we use to identify score of identified restricted characters in the word to check.
+  // If it matches with restricted words then add 1 to restrictedScore variables which we use to identify score of identified restricted characters in the word to check.
   // 4a. However if the word to check is 9 characters then check whether the 7th and 8th character is '12' 
   // which represent 'r'. And plus the index in the looping to avoid to check the 8th character twice.
   // 5. Check the restrictedScore which should be equal to 6 that represent 6 characters matched to restricted word 

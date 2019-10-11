@@ -15,6 +15,10 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route
+            exact path="/" 
+            render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
+          />
+          <Route
             exact path="/auth/login" 
             render={ (props) => (<NavBarPage {...props} cookies={this.props.cookies}/>) } 
           />

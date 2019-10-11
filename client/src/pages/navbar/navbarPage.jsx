@@ -7,6 +7,7 @@ import ExchangePage from '../exchange/exchangePage';
 import NotFoundPage from '../error/notFoundPage';
 import Navbar from '../../components/navbar/navbar';
 import { setCookiesFunction } from '../../store/general/general.actions';
+import { Redirect } from 'react-router-dom';
 
 class NavbarPage extends Component {
   render() {
@@ -18,6 +19,9 @@ class NavbarPage extends Component {
       <div>
         <Navbar />
         {
+          path === '/' ?
+          <Redirect to='/auth/login' />
+          :
           path === '/auth/login' ?
           <AuthPage match={ this.props.match } />
           :
