@@ -1,0 +1,114 @@
+.Exchange-page-box {
+  padding: 1em 0em;
+  min-height: 100vh;
+  background-color: var(--main-gray-white);
+}
+
+.Order-box {
+  border-radius: 5px;
+  background-color: var(--main-white);
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  margin-bottom: 1em;
+}
+
+.Order-head-box {
+  padding: 1em;
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  /* border-bottom: 1px solid var(--main-gray); */
+}
+
+.Order-head-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.Order-body-box {
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+}
+
+.Order-form-box {
+  box-shadow: rgba(0, 107, 214, 0.1) 0px 2px 6px 0px;
+  padding: 1em;
+}
+
+.Sell-price-text {
+  color: var(--main-ask);
+  font-weight: bold;
+}
+
+.Buy-price-text {
+  color: var(--main-bid);
+  font-weight: bold;
+}
+
+.Order-input-label {
+  color: var(--main-dark-gray) !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.Order-input-text {
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}
+
+.Modal-text {
+  font-size: 14px;
+}
+
+.Order-sell-box {
+  padding-right: 0px !important;
+}
+
+.Order-buy-box {
+  padding-left: 0px !important;
+}
+
+.Web-table-buy-box {
+  display: block;
+}
+
+.Mobile-table-buy-box {
+  display: none;
+}
+
+.Web-order-form-box {
+  display: block;
+}
+
+.Mobile-order-form-box {
+  display: none;
+}
+
+.Loading-box {
+  background-color: var(--main-black);
+  opacity: 0.5;
+  min-height: 15em;
+}
+
+/* Mobile CSS */
+@media screen and (max-width: 600px) {
+  .Order-sell-box {
+    padding-right: 1em !important;
+  }
+  
+  .Order-buy-box {
+    padding-left: 1em !important;
+  }
+
+  .Mobile-table-buy-box {
+    display: block;
+  }  
+
+  .Web-table-buy-box {
+    display: none;
+  }  
+
+  .Mobile-order-form-box {
+    display: block;
+  }  
+
+  .Web-order-form-box {
+    display: none;
+  }
+}

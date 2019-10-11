@@ -1,0 +1,46 @@
+.Auth-box {
+  border: 1px solid var(--main-gray);
+  border-radius: 5px;
+  padding: 1.5em !important;
+}
+
+.Auth-head-box {
+  margin-bottom: 16px;;
+}
+
+.Auth-head-text {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Auth-foot-box {
+  margin: 16px 0px;
+}
+
+.Auth-foot-text {
+  font-size: 12px;
+  text-align: right;
+}
+
+.Auth-link {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.Auth-error-text {
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--main-red);
+  text-align: center;
+}
+
+.Icon-box {
+  height: 70%;
+  width: 100%;
+}
+
+.Icon-style {
+  color: var(--main-light-gray);
+}
+

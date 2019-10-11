@@ -1,0 +1,39 @@
+.btn-outline-success {
+  color: var(--main-white) !important;
+  border-color: var(--main-white) !important;
+  margin: 0px 4px;
+}
+
+.btn-outline-success:hover {
+  /* color: var(--main-white) !important;
+  background-color: var(--main-green) !important; */
+  border-color: var(--main-green) !important;
+  opacity: 0.8;
+}
+
+.btn-primary {
+  background-color: var(--main-green) !important;
+  border-color: var(--main-green) !important;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-secondary {
+  background-color: var(--main-bid) !important;
+  border-color: var(--main-bid) !important;
+}
+
+.btn-secondary:hover {
+  opacity: 0.8;
+}
+
+.btn-info {
+  background-color: var(--main-ask) !important;
+  border-color: var(--main-ask) !important;
+}
+
+.btn-info:hover {
+  opacity: 0.8;
+}

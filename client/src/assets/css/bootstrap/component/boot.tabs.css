@@ -1,0 +1,7 @@
+.nav-tabs .nav-link.active {
+  color: var(--main-green) !important;
+}
+
+.nav-tabs > a {
+  color: var(--main-dark-gray) !important;
+}

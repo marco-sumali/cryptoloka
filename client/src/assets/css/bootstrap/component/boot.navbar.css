@@ -1,0 +1,12 @@
+.Navbar-bg { 
+  background-color: var(--main-green) !important;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: var(--main-white) !important;
+}
+
+span > a {
+  color: var(--main-green) !important;
+  text-decoration-color: var(--main-green) !important;
+}

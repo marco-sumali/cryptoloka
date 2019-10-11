@@ -1,0 +1,23 @@
+.Text-left {
+  text-align: left !important;
+}
+
+.Text-center {
+  text-align: center;
+}
+
+.Text-right {
+  text-align: right;
+}
+
+.Text-capitalize {
+  text-transform: capitalize;
+}
+
+.Text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.Text-lowercase {
+  text-transform: lowercase !important;
+}
